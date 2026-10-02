@@ -2,10 +2,252 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8">
-  <title>Meine Deutschkurse</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Deutschkurse – online und vor Ort</title>
+  <meta name="description" content="Deutsch lernen für Erwachsene, Schülerinnen und Schüler und Geflüchtete. Online oder vor Ort, von A1 bis C1.">
+  <style>
+    :root {
+      --tinte: #1b2a41;
+      --papier: #f5f7fa;
+      --sonne: #ffc83d;
+      --meer: #1f7a8c;
+      --weiss: #ffffff;
+      --linie: #d5dce5;
+      --text-gedaempft: #4a5a70;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--papier);
+      color: var(--tinte);
+      font-family: "Avenir Next", "Segoe UI", system-ui, -apple-system, Roboto, sans-serif;
+      font-size: 1.0625rem;
+      line-height: 1.6;
+    }
+    a { color: var(--meer); }
+    a:focus-visible, .btn:focus-visible {
+      outline: 3px solid var(--tinte);
+      outline-offset: 3px;
+    }
+    .wrap { max-width: 1060px; margin: 0 auto; padding: 0 1.25rem; }
+
+    /* Kopfbereich */
+    header { padding: 1.25rem 0; }
+    header .wrap { display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap; }
+    .marke { font-weight: 800; font-size: 1.15rem; text-decoration: none; color: var(--tinte); }
+    nav { display: flex; gap: 1.5rem; }
+    nav a { color: var(--tinte); text-decoration: none; font-weight: 600; }
+    nav a:hover { text-decoration: underline; }
+
+    /* Hero */
+    .hero { padding: 3rem 0 4rem; }
+    .hero .wrap { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 3rem; align-items: center; }
+    h1 {
+      font-size: clamp(2.2rem, 5vw, 3.6rem);
+      line-height: 1.08;
+      letter-spacing: -0.02em;
+      margin: 0 0 1.25rem;
+      max-width: 15ch;
+    }
+    .hero p.lead { font-size: 1.2rem; max-width: 34em; margin: 0 0 2rem; color: var(--text-gedaempft); }
+    .knoepfe { display: flex; gap: 0.9rem; flex-wrap: wrap; }
+    .btn {
+      display: inline-block;
+      padding: 0.85rem 1.5rem;
+      border-radius: 999px;
+      font-weight: 700;
+      text-decoration: none;
+      border: 2px solid var(--tinte);
+    }
+    .btn-voll { background: var(--tinte); color: var(--weiss); }
+    .btn-voll:hover { background: #0f1a2b; }
+    .btn-leer { background: transparent; color: var(--tinte); }
+    .btn-leer:hover { background: var(--weiss); }
+
+    /* Sprechblasen */
+    .blasen { display: flex; flex-direction: column; gap: 0.8rem; }
+    .blase {
+      width: fit-content;
+      padding: 0.7rem 1.4rem;
+      font-size: 1.6rem;
+      font-weight: 800;
+      border-radius: 1.4rem 1.4rem 1.4rem 0.3rem;
+      background: var(--weiss);
+      border: 2px solid var(--tinte);
+      animation: auftauchen 0.5s ease-out both;
+    }
+    .blase.gelb { background: var(--sonne); }
+    .blase.rechts { align-self: flex-end; border-radius: 1.4rem 1.4rem 0.3rem 1.4rem; }
+    .blase.gross { font-size: 3rem; padding: 0.8rem 2rem; }
+    .blase:nth-child(1) { animation-delay: 0.1s; }
+    .blase:nth-child(2) { animation-delay: 0.3s; }
+    .blase:nth-child(3) { animation-delay: 0.5s; }
+    .blase:nth-child(4) { animation-delay: 0.7s; }
+    .blase:nth-child(5) { animation-delay: 0.9s; }
+    @keyframes auftauchen {
+      from { opacity: 0; transform: scale(0.85); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    /* Abschnitte */
+    section { padding: 3.5rem 0; }
+    section.hell { background: var(--weiss); border-top: 1px solid var(--linie); border-bottom: 1px solid var(--linie); }
+    h2 { font-size: clamp(1.6rem, 3.5vw, 2.2rem); line-height: 1.2; margin: 0 0 2rem; letter-spacing: -0.01em; }
+    h3 { font-size: 1.25rem; margin: 0 0 0.4rem; }
+
+    .zeilen > div {
+      display: grid;
+      grid-template-columns: 14rem 1fr;
+      gap: 1rem 2rem;
+      padding: 1.5rem 0;
+      border-top: 1px solid var(--linie);
+    }
+    .zeilen > div:last-child { border-bottom: 1px solid var(--linie); }
+    .zeilen p { margin: 0; max-width: 40em; }
+
+    .zwei { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
+    .zwei h3 { padding-left: 1rem; border-left: 5px solid var(--sonne); }
+    .zwei ul { margin: 0.8rem 0 0; padding-left: 2.2rem; }
+
+    .niveaus { display: flex; flex-wrap: wrap; gap: 0.8rem; list-style: none; padding: 0; margin: 1rem 0 0; }
+    .niveaus li {
+      background: var(--papier);
+      border: 2px solid var(--tinte);
+      border-radius: 0.8rem;
+      padding: 0.6rem 1rem;
+      min-width: 8rem;
+    }
+    .niveaus strong { display: block; font-size: 1.3rem; }
+    .niveaus span { font-size: 0.95rem; color: var(--text-gedaempft); }
+
+    .anmeldung { background: var(--tinte); color: var(--weiss); }
+    .anmeldung p { max-width: 36em; }
+    .anmeldung .btn { background: var(--sonne); color: var(--tinte); border-color: var(--sonne); }
+    .anmeldung .btn:hover { background: #ffd666; }
+    .anmeldung a:not(.btn) { color: var(--sonne); }
+    .anmeldung .btn:focus-visible { outline-color: var(--weiss); }
+
+    footer { padding: 2rem 0; font-size: 0.95rem; color: var(--text-gedaempft); }
+    footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+    footer nav a { font-weight: 400; color: var(--text-gedaempft); }
+
+    @media (max-width: 800px) {
+      .hero .wrap, .zwei { grid-template-columns: 1fr; gap: 2rem; }
+      .zeilen > div { grid-template-columns: 1fr; gap: 0.3rem; }
+      .blase.gross { font-size: 2.4rem; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .blase { animation: none; }
+      html { scroll-behavior: auto; }
+    }
+  </style>
 </head>
 <body>
-  <h1>Herzlich willkommen zu meinen Deutschkursen</h1>
-  <p>Hier entsteht meine Webseite. Bald findest du hier alle Informationen zu meinen Kursen.</p>
+
+<header>
+  <div class="wrap">
+    <a class="marke" href="#">Deutschkurse [Dein Name]</a>
+    <nav aria-label="Hauptnavigation">
+      <a href="#fuer-wen">Für wen</a>
+      <a href="#kurse">Kurse</a>
+      <a href="#anmeldung">Anmeldung</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="hero">
+    <div class="wrap">
+      <div>
+        <h1>Deutsch lernen, das im Alltag funktioniert</h1>
+        <p class="lead">Kleine Gruppen und Einzelunterricht für Erwachsene, Schülerinnen und Schüler und Geflüchtete. Online oder vor Ort, vom ersten Wort bis zur Prüfung.</p>
+        <div class="knoepfe">
+          <a class="btn btn-voll" href="#anmeldung">Erstgespräch anfragen</a>
+          <a class="btn btn-leer" href="#kurse">Kurse ansehen</a>
+        </div>
+      </div>
+      <div class="blasen" aria-hidden="true">
+        <div class="blase gelb gross" lang="de">Hallo!</div>
+        <div class="blase rechts" lang="fr">Bonjour</div>
+        <div class="blase" lang="en">Hello</div>
+        <div class="blase gelb rechts" lang="ar" dir="rtl">مرحبا</div>
+        <div class="blase" lang="uk">Привіт</div>
+      </div>
+    </div>
+  </div>
+
+  <section id="fuer-wen" class="hell">
+    <div class="wrap">
+      <h2>Für wen die Kurse sind</h2>
+      <div class="zeilen">
+        <div>
+          <h3>Erwachsene</h3>
+          <p>Deutsch für Beruf und Alltag: Gespräche führen, E-Mails schreiben, sicherer auftreten. Auf Wunsch mit Vorbereitung auf Prüfungen wie Goethe oder telc.</p>
+        </div>
+        <div>
+          <h3>Schülerinnen und Schüler</h3>
+          <p>Hilfe beim Fach Deutsch oder beim Lernen von Deutsch als Zweitsprache: Grammatik, Aufsatz, Textanalyse und Vorbereitung auf Klassenarbeiten und Prüfungen.</p>
+        </div>
+        <div>
+          <h3>Geflüchtete</h3>
+          <p>Ein Einstieg ohne Vorkenntnisse. Wir üben die Sprache für den Alltag: Arzt, Wohnung, Ämter, Schule. [Erklärungen bei Bedarf auf Englisch und Französisch.]</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="kurse">
+    <div class="wrap">
+      <h2>Online oder vor Ort</h2>
+      <div class="zwei">
+        <div>
+          <h3>Online</h3>
+          <ul>
+            <li>Unterricht per Video von zu Hause</li>
+            <li>Flexible Zeiten, auch abends</li>
+            <li>Alle Materialien digital</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Vor Ort in [Stadt]</h3>
+          <ul>
+            <li>Kleine Gruppen in [Ort / Raum]</li>
+            <li>Viel Sprechen und Zuhören im Gespräch</li>
+            <li>Feste Kurszeiten, [Wochentag und Uhrzeit]</li>
+          </ul>
+        </div>
+      </div>
+      <h3>Alle Niveaus von A1 bis C1</h3>
+      <ul class="niveaus">
+        <li><strong>A1</strong><span>Erste Wörter</span></li>
+        <li><strong>A2</strong><span>Alltag meistern</span></li>
+        <li><strong>B1</strong><span>Sicher sprechen</span></li>
+        <li><strong>B2</strong><span>Beruf und Studium</span></li>
+        <li><strong>C1</strong><span>Fließend und genau</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="anmeldung" class="anmeldung">
+    <div class="wrap">
+      <h2>Erstgespräch vereinbaren</h2>
+      <p>Schreib mir kurz, was du lernen möchtest und ob du online oder vor Ort teilnehmen willst. Ich melde mich innerhalb von [zwei] Werktagen bei dir.</p>
+      <p><a class="btn" href="mailto:deine-adresse@beispiel.de?subject=Anfrage%20Deutschkurs">E-Mail schreiben</a></p>
+      <p>Oder ruf an: <a href="tel:+490000000000">[Telefonnummer]</a></p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 [Dein Name]</span>
+    <nav aria-label="Rechtliches">
+      <a href="impressum.html">Impressum</a>
+      <a href="datenschutz.html">Datenschutz</a>
+    </nav>
+  </div>
+</footer>
+
 </body>
 </html>
